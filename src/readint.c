@@ -2,7 +2,6 @@
 #include<stdlib.h>
 
 int main() {
-
   int bar;
   printf("pick the int value for variable: bar\n");
   scanf("%d", &bar);
