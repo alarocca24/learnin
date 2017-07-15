@@ -93,8 +93,8 @@ int main() {
     printf("Gross Pay: $%0.2f\n", gross);
     printf("Base Pay: $%0.2f\n", base);
     printf("Overtime Pay: $%0.2f\n", ot);
-    printf("Taxes Paid: $%0.2f\n\n", tax);
+    printf("Taxes Paid: $%0.2f\n", tax);
     printf("--------------\n");
-    printf("Net Pay: $%0.2f\n", net);
+    printf("Net Pay: $%0.2f\n\n", net);
   }
 }
