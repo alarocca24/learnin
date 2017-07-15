@@ -1,13 +1,19 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int main(void) {
+int main() {
+  float avg;
+  int add=0;
+  int negative;
+  int target;
 
-  int x = 0;
-
-  printf("Alex Larocca \n");
-  printf("alarocca%i@gmail.com \n", x);
-  system( "read -n 1 -s -p \"Press any key to continue...\"" );
-  return 0;
-
+  printf("select negative int: ");
+  scanf("%d", &negative);
+  target = negative -5;
+  for(; negative >= target; --negative) {
+    printf("%d\n", negative);
+    add += negative;
+  }
+  avg = add / 5;
+  printf("%0.2f\n", avg);
 }

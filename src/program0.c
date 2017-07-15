@@ -32,3 +32,20 @@ int main() {
   printf("The product is:%i\n", mult);
 
 }
+
+/*
+~~~~OUTPUT~~~~~
+Alexs-macbook-pro:c-class alexlarocca$ ./program0
+
+My name is Alex Larocca, I'm in course #60375. I've taken:
+-Intro to Programming Online
+-Currently working in the field & learning on the job :D
+
+Pick first value:23
+Pick second value:33
+
+The sum is:56
+The difference is:-10
+The quotient is:0.696970
+The product is:759
+*/
