@@ -15,20 +15,23 @@ int overtimePay(float hoursWorked, float payRate) {
   float otPay, otRate;
   otRate = 1.5 * payRate;
   otPay = overTimeHrs(hoursWorked, payRate) * otRate;
+  if (hoursWorked <= WORK_WEEK_MAX_HOURS) {
+    otPay = 0;
+  }
   return otPay;
 }
 
 int grossPay(float hoursWorked, float payRate) {
-  float gross, otHrs, totalPay;
+  float gross, otHrs;
   otHrs = overTimeHrs(hoursWorked, payRate);
+  gross = hoursWorked * payRate;
 
   if (hoursWorked <= WORK_WEEK_MAX_HOURS) {
-    gross = hoursWorked * payRate;
+    return gross;
   } else {
-    gross = hoursWorked * payRate;
-    gross += (otHrs * (1.5 * payRate));
+    gross = (WORK_WEEK_MAX_HOURS * payRate) + (otHrs * (1.5 * payRate));
+    return gross;
   }
-  totalPay = hoursWorked * payRate;
   return gross;
 }
 
@@ -56,13 +59,13 @@ int main() {
   float payRate[5];
   float hoursWorked[5];
   int maxLoop = 5;
-  int i=0;
+  int i;
 
   for (i=0; i < maxLoop; i++) {
 
     printf("Enter name: ");
     scanf("%s", &name[0][i]);
-    if (strcmp(name, "-1") == 0) {
+    if (strcmp(name[i], "-1") == 0) {
       break;
     }
     printf("Enter hourly rate: ");
@@ -77,6 +80,8 @@ int main() {
       break;
     }
   }
+
+  maxLoop = i;
 
   for (i=0; i < maxLoop; i++) {
     float gross, ot, base, tax, net;
