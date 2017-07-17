@@ -55,7 +55,7 @@ int netPay(float hoursWorked, float payRate) {
 }
 
 int main() {
-  char name[MAX_NAME][5];
+  char name[5][MAX_NAME];
   float payRate[5];
   float hoursWorked[5];
   int maxLoop = 5;
@@ -64,7 +64,7 @@ int main() {
   for (i=0; i < maxLoop; i++) {
 
     printf("Enter name: ");
-    scanf("%s", &name[0][i]);
+    scanf("%s", &name[i][0]);
     if (strcmp(name[i], "-1") == 0) {
       break;
     }
@@ -92,7 +92,7 @@ int main() {
     tax = taxesPaid(hoursWorked[i], payRate[i]);
     net = netPay(hoursWorked[i], payRate[i]);
 
-    printf("\nPay To: %s\n", name[MAX_NAME][i]);
+    printf("\nPay To: %s\n", name[i]);
     printf("Hours Worked: %0.2f\n", hoursWorked[i]);
     printf("Hourly Rate: $%0.2f\n", payRate[i]);
     printf("Gross Pay: $%0.2f\n", gross);
