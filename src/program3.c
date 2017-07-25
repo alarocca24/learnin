@@ -96,7 +96,7 @@ int main() {
     base = basePay(hoursWorked[i], wage[i]);
     tax = taxesPaid(hoursWorked[i], wage[i]);
     net = netPay(hoursWorked[i], wage[i]);
-    totalAll += net;
+    totalAll += gross;
 
     printf("\nName: %s\nHourly: %0.2f\nHours Worked: %0.2f\n", name[i], wage[i], hoursWorked[i]);
     printf("Gross Pay: $%0.2f\n", gross);
@@ -104,7 +104,7 @@ int main() {
     printf("Overtime Pay: $%0.2f\n", ot);
     printf("Taxes Paid: $%0.2f\n", tax);
     printf("--------------\n");
-    printf("Net Pay: $%0.2f\n\n", net);
+    printf("Net Pay: $%0.2f\n\n", gross);
   }
 
   printf("Total Paid to All Employees = $%0.2f\n", totalAll);
@@ -188,4 +188,4 @@ int main() {
 // --------------
 // Net Pay: $560.00
 //
-// Total Paid to All Employees = $2822.00
+// Total Paid to All Employees = $3527.00
