@@ -68,16 +68,13 @@ float gross(Employee *em)
   float grossPay;
   float overtimeHrs = 0;
 
-  grossPay = em->hourlyWage * em->hoursWorked;
-
   if (em->hoursWorked <= WORK_WEEK_MAX_HOURS)
   {
-    return grossPay;
+    grossPay = em->hourlyWage * em->hoursWorked;
   } else {
     overtimeHrs = em->hoursWorked - WORK_WEEK_MAX_HOURS;
     grossPay = (WORK_WEEK_MAX_HOURS * em->hoursWorked)
              + (overtimeHrs * (1.5 * em->hourlyWage));
-    return grossPay;
   }
   return grossPay;
 }
@@ -115,8 +112,7 @@ float base(Employee *em)
   float basePay;
 
   if (em->hoursWorked <= WORK_WEEK_MAX_HOURS) {
-    basePay = gross(employees);
-    return basePay;
+    basePay = em->hoursWorked * em->hourlyWage;
   } else {
     basePay = WORK_WEEK_MAX_HOURS * em->hourlyWage;
   }
