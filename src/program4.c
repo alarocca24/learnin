@@ -62,6 +62,35 @@ int createEmployees()
   return i;
 }
 
+void modifyEmployee(int maxLoop)
+{
+  int employeeEdit;
+
+  printf("----------------------------------\n");
+
+  for(int i=0; i < maxLoop; i++)
+  {
+    printf("%d.%s\n", i, employees[i].name);
+  }
+
+  printf("----------------------------------\n");
+  printf("Which Employee Data would you like to update?(-1 to return): ");
+
+  scanf("%i", &employeeEdit);
+  if(employeeEdit == -1)
+  {
+    return;
+  }
+  printf("Enter Information to replace Employee %d\n", employeeEdit);
+  Employee *em = inputEmployee();
+  if(em == NULL)
+  {
+    return;
+  } else {
+    employees[employeeEdit] = *em;
+  }
+}
+
 //gross pay function
 float gross(Employee *em)
 {
@@ -73,7 +102,7 @@ float gross(Employee *em)
     grossPay = em->hourlyWage * em->hoursWorked;
   } else {
     overtimeHrs = em->hoursWorked - WORK_WEEK_MAX_HOURS;
-    grossPay = (WORK_WEEK_MAX_HOURS * em->hoursWorked)
+    grossPay = (WORK_WEEK_MAX_HOURS * em->hourlyWage)
              + (overtimeHrs * (1.5 * em->hourlyWage));
   }
   return grossPay;
@@ -85,7 +114,7 @@ float tax(Employee *em)
   float tax;
   float taxRate = 0.2;
 
-  tax = gross(employees) * taxRate;
+  tax = gross(em) * taxRate;
   return tax;
 }
 
@@ -123,7 +152,7 @@ float base(Employee *em)
 float net(Employee *em) {
   float netPay;
 
-  netPay = gross(employees) - tax(employees);
+  netPay = gross(em) - tax(em);
   return netPay;
 }
 
@@ -154,12 +183,12 @@ void prntData(int maxLoop)
       printf("\nName: %s\nHourly: %0.2f\nHours Worked: %0.2f\n", employees[i].name,
                                                          employees[i].hourlyWage,
                                                        employees[i].hoursWorked);
-      printf("Gross Pay: $%0.2f\n", gross(employees+i));
-      printf("Base Pay: $%0.2f\n", base(employees+i));
-      printf("Overtime Pay: $%0.2f\n", ot(employees+i));
-      printf("Taxes Paid: $%0.2f\n", tax(employees+i));
+      printf("Gross Pay: $%0.2f\n", gross(&employees[i]));
+      printf("Base Pay: $%0.2f\n", base(&employees[i]));
+      printf("Overtime Pay: $%0.2f\n", ot(&employees[i]));
+      printf("Taxes Paid: $%0.2f\n", tax(&employees[i]));
       printf("--------------\n");
-      printf("Net Pay: $%0.2f\n\n", net(employees+i));
+      printf("Net Pay: $%0.2f\n\n", net(&employees[i]));
     }
   }
   printf("\nName: %s\nHourly: %0.2f\nHours Worked: %0.2f\n", employees[employeePrint].name,
@@ -173,38 +202,6 @@ void prntData(int maxLoop)
   printf("--------------\n");
   printf("Net Pay: $%0.2f\n\n", net(&employees[employeePrint]));
   }
-
-  // printf("Total Paid to All Employees = $%0.2f\n", totalAll);
-
-//modifies employee data
-void modifyEmployee(int maxLoop)
-{
-  int employeeEdit;
-
-  printf("----------------------------------\n");
-
-  for(int i=0; i < maxLoop; i++)
-  {
-    printf("%d.%s\n", i, employees[i].name);
-  }
-
-  printf("----------------------------------\n");
-  printf("Which Employee Data would you like to update?(-1 to return): ");
-
-  scanf("%i", &employeeEdit);
-  if(employeeEdit == -1)
-  {
-    return;
-  }
-  printf("Enter Information to replace Employee %d\n", employeeEdit);
-  Employee *em = inputEmployee();
-  if(em == NULL)
-  {
-    return;
-  } else {
-    employees[employeeEdit] = *em;
-  }
-}
 
 //menu function so you can select different options
 void Menu()
@@ -240,6 +237,7 @@ void Menu()
     }
   }
 }
+
 
 int main()
 {
